@@ -1,0 +1,49 @@
+package com.example.yachtbookingapp.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Set;
+
+/**Represents a booking made for renting a yacht.*/
+@Entity
+@Table(name = "booking")
+@Data//"Lombok" annotation for getters, setters
+@AllArgsConstructor
+@NoArgsConstructor
+public class BookingEntityModel {
+    //Attributes:
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "booking_id")
+    private int bookingId;
+    @ManyToOne
+    @JoinColumn(name = "yacht_id", nullable = false, foreignKey = @ForeignKey(name = "fk_yacht_booking"))
+    private YachtEntityModel yacht;
+    @Column(name = "booking_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime bookingDate;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
+    @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
+    private BigDecimal totalPrice;
+    @Column(name = "status", nullable = false, length = 20)
+    private String status;
+    //One-To-One relationship is owned by ReportEntityModel class, and relationship must be represented also here:
+    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
+    private ReportEntityModel report;
+    //Representation of discounts:
+    @ManyToMany
+    @JoinTable(
+            name = "booking_discount",
+            joinColumns = @JoinColumn(name = "booking_id"),
+            inverseJoinColumns = @JoinColumn(name = "discount_id")
+    )
+    private Set<DiscountEntityModel> discounts;
+}

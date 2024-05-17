@@ -1,4 +1,4 @@
-package com.example.yachtbookingapp;
+package test.java.com.example.yachtbookingapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

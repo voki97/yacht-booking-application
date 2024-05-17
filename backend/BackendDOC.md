@@ -31,7 +31,7 @@ The backend of the Yacht Booking Application consists of the following component
 
 - **Controllers**: Handle incoming HTTP requests, process the requests, and return appropriate HTTP responses. They define RESTful API endpoints for interacting with the application.
 
-- **Models**: Define entity classes representing domain objects such as yachts, bookings, and discounts. These classes are typically annotated with JPA annotations for database mapping.
+- **Models**: Define entity classes representing domain objects such as yachts, bookings, and discounts. These classes are typically annotated with JPA annotations for database mapping. More about entity models is described in [model documentation](src/main/java/com/example/yachtbookingapp/model/EntityModelDOC.md).
 
 - **Repositories**: Provide interfaces for interacting with the database using Spring Data JPA. They extend `JpaRepository`.
 
@@ -87,7 +87,7 @@ This document provides an overview of the database schema for the Yacht Booking 
 ## Relationships
 
 - **Yacht - Booking**: One-to-Many relationship. Each booking is associated with one yacht.
-- **Booking - Discount**: Many-to-Many relationship. Each booking can have multiple discounts, and each discount can be applied to multiple bookings.
+- **Booking—Discount**: Many-to-Many relationship. Each booking can have multiple discounts, and each discount can be applied to multiple bookings.
 - **Booking - Report**: One-to-One relationship. Each booking is associated with one report.
 
 ## Usage
