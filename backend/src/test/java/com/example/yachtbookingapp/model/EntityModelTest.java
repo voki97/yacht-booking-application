@@ -92,22 +92,22 @@ public class EntityModelTest {
         //Entity models, all argument constructors:
         //Yacht:
         YachtEntityModel yacht = new YachtEntityModel(
-                1, "Yacht Name", "Yacht type", BigDecimal.valueOf(1000.00)
+                "Yacht Name", "Yacht type", BigDecimal.valueOf(1000.00)
         );
         //Booking:
         LocalDateTime dateTime = LocalDateTime.now();
         LocalDate startDate = LocalDate.now().minusDays(1);
         LocalDate endDate = LocalDate.now().plusDays(1);
         BookingEntityModel booking = new BookingEntityModel(
-                1, yacht, dateTime, startDate, endDate, BigDecimal.valueOf(1000.00), "pending", new ReportEntityModel(),  new HashSet<>()
+                yacht, dateTime, startDate, endDate, BigDecimal.valueOf(1000.00), "pending"
         );
         //report:
         LocalDateTime generationDate = LocalDateTime.now();
         ReportEntityModel report = new ReportEntityModel(
-                1, booking,"path/to/report", generationDate);
+                booking,"path/to/report", generationDate);
         //discount:
         DiscountEntityModel discount = new DiscountEntityModel(
-                1, "1234567890", "VIP", BigDecimal.valueOf(100.00), new HashSet<>()
+                "1234567890", "VIP", BigDecimal.valueOf(100.00)
         );
         //assert with toString():
         assertEquals("YachtEntityModel(yachtId=1, name=Yacht Name, type=Yacht type, pricePerDay=1000.0)",

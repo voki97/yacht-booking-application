@@ -31,11 +31,11 @@ The backend of the Yacht Booking Application consists of the following component
 
 - **Controllers**: Handle incoming HTTP requests, process the requests, and return appropriate HTTP responses. They define RESTful API endpoints for interacting with the application.
 
-- **Models**: Define entity classes representing domain objects such as yachts, bookings, and discounts. These classes are typically annotated with JPA annotations for database mapping. More about entity models is described in [model documentation](src/main/java/com/example/yachtbookingapp/model/EntityModelDOC.md).
+- **Models**: Define entity classes representing domain objects such as yachts, bookings, and discounts. These classes are typically annotated with JPA annotations for database mapping. More about entity models is described in [EntityModelDOC](src/main/java/com/example/yachtbookingapp/model/EntityModelDOC.md).
 
 - **Repositories**: Provide interfaces for interacting with the database using Spring Data JPA. They extend `JpaRepository`.
 
-- **Services**: Contain business logic and perform operations such as booking a yacht, applying discounts, generating reports. They typically interact with repositories to access and manipulate data.
+- **Services**: Contain business logic and perform operations such as booking a yacht, applying discounts, generating reports. They typically interact with repositories to access and manipulate data. More about services is described in [ServiceDOC](src/main/java/com/example/yachtbookingapp/service/ServiceDOC.md).
 
 # Yacht Booking Application Database Documentation
 
@@ -120,10 +120,10 @@ To set up and run the backend of the Yacht Booking Application locally, follow t
 
    1. **Open Terminal**: Launch the Terminal application on your macOS system.
 
-   2. **Install Homebrew**: If you haven't already installed Homebrew, run the following command in Terminal:
+   2. **Install Homebrew**: If you haven't already installed Homebrew, run the following command in the Terminal:
       ```bash
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   3. **Install MySql**: If you haven't already installed MySql, run the following command in Terminal:
+   3. **Install MySql**: If you haven't already installed MySql, run the following command in the Terminal:
          ```bash
          brew install mysql
    
