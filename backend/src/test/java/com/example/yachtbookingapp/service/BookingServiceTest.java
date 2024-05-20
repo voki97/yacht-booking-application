@@ -41,11 +41,9 @@ public class BookingServiceTest {
     //CREATE------------------------------------------------------------------------------------------------------------
     @Test
     public void testAddBooking(){
-        //attributes for testing:
-        LocalDateTime bookingDate = LocalDateTime.now();
         //booking entity model:
         BookingEntityModel expected = new BookingEntityModel(
-                new YachtEntityModel(), bookingDate, LocalDate.now(),
+                new YachtEntityModel(), LocalDate.now(),
                 LocalDate.now().plusDays(1), BigDecimal.valueOf(100.00), "pending"
         );
         //mock:

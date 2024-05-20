@@ -35,7 +35,6 @@ public class BookingEntityModel {
     @NonNull
     private YachtEntityModel yacht;
     @Column(name = "booking_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @NonNull
     private LocalDateTime bookingDate;
     @Column(name = "start_date", nullable = false)
     @NonNull

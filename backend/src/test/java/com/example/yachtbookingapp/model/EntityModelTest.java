@@ -95,11 +95,10 @@ public class EntityModelTest {
                 "Yacht Name", "Yacht type", BigDecimal.valueOf(1000.00)
         );
         //Booking:
-        LocalDateTime dateTime = LocalDateTime.now();
         LocalDate startDate = LocalDate.now().minusDays(1);
         LocalDate endDate = LocalDate.now().plusDays(1);
         BookingEntityModel booking = new BookingEntityModel(
-                yacht, dateTime, startDate, endDate, BigDecimal.valueOf(1000.00), "pending"
+                yacht,  startDate, endDate, BigDecimal.valueOf(1000.00), "pending"
         );
         //report:
         LocalDateTime generationDate = LocalDateTime.now();
@@ -112,9 +111,9 @@ public class EntityModelTest {
         //assert with toString():
         assertEquals("YachtEntityModel(yachtId=1, name=Yacht Name, type=Yacht type, pricePerDay=1000.0)",
                 yacht.toString());
-        assertEquals("BookingEntityModel(bookingId=1, yacht=YachtEntityModel(yachtId=1, name=Yacht Name, type=Yacht type, pricePerDay=1000.0), bookingDate="+dateTime+", startDate=2024-05-16, endDate=2024-05-18, totalPrice=1000.0, status=pending, report=ReportEntityModel(reportId=0, booking=null, filePath=null, generationDate=null), discounts=[])",
+        assertEquals("BookingEntityModel(bookingId=1, yacht=YachtEntityModel(yachtId=1, name=Yacht Name, type=Yacht type, pricePerDay=1000.0), startDate=2024-05-16, endDate=2024-05-18, totalPrice=1000.0, status=pending, report=ReportEntityModel(reportId=0, booking=null, filePath=null, generationDate=null), discounts=[])",
                 booking.toString());
-        assertEquals("ReportEntityModel(reportId=1, booking=BookingEntityModel(bookingId=1, yacht=YachtEntityModel(yachtId=1, name=Yacht Name, type=Yacht type, pricePerDay=1000.0), bookingDate="+dateTime+", startDate=2024-05-16, endDate=2024-05-18, totalPrice=1000.0, status=pending, report=ReportEntityModel(reportId=0, booking=null, filePath=null, generationDate=null), discounts=[]), filePath=path/to/report, generationDate="+generationDate+")",
+        assertEquals("ReportEntityModel(reportId=1, booking=BookingEntityModel(bookingId=1, yacht=YachtEntityModel(yachtId=1, name=Yacht Name, type=Yacht type, pricePerDay=1000.0), startDate=2024-05-16, endDate=2024-05-18, totalPrice=1000.0, status=pending, report=ReportEntityModel(reportId=0, booking=null, filePath=null, generationDate=null), discounts=[]), filePath=path/to/report, generationDate="+generationDate+")",
                 report.toString());
         assertEquals("DiscountEntityModel(discountId=1, code=1234567890, type=VIP, value=100.0, bookings=[])",
                 discount.toString());
