@@ -59,6 +59,16 @@ public class DiscountController {
         return ResponseEntity.ok(discount);
     }
 
+    //By code:
+    /**
+     * Retrieve a specific discount record by unique code.
+     */
+    @GetMapping("/code/{code}")
+    public ResponseEntity<DiscountEntityModel> getDiscountByCode(@PathVariable("code") String code) {
+        DiscountEntityModel discount = discountService.getDiscountByCode(code);
+        return ResponseEntity.ok(discount);
+    }
+
     //UPDATE------------------------------------------------------------------------------------------------------------
 
     /**

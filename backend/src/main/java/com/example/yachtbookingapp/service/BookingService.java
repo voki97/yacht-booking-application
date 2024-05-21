@@ -1,7 +1,11 @@
 package com.example.yachtbookingapp.service;
 
 import com.example.yachtbookingapp.model.BookingEntityModel;
+import com.example.yachtbookingapp.model.DiscountEntityModel;
+import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscount;
+import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscountKey;
 import com.example.yachtbookingapp.repository.BookingRepository;
+import com.example.yachtbookingapp.repository.DiscountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,7 @@ import java.util.List;
 public class BookingService {
     //Attributes:
     private final BookingRepository bookingRepository;
+    private final DiscountRepository discountRepository;
 
     //Basic CRUD methods:
     //CREATE------------------------------------------------------------------------------------------------------------
@@ -29,9 +34,25 @@ public class BookingService {
      * Creates a new booking entity in the database.
      *
      * @param #booking the booking entity to be created.
+     * @param #discountId set of discount ID if available, to insert into booking_discount table.
      * @return BookingEntityModel the created booking entity.
      */
-    public BookingEntityModel createBooking(BookingEntityModel booking) {
+    public BookingEntityModel createBooking(BookingEntityModel booking, int discountId) {
+        if(discountId!=0){
+            DiscountEntityModel discount = discountRepository.findById(discountId).orElseThrow(()->
+                    new RuntimeException("Discount with ID: "+discountId+" not found!"));
+            BookingDiscountKey key = new BookingDiscountKey(booking.getBookingId(), discount.getDiscountId());
+            BookingDiscount bookingDiscount = new BookingDiscount(key, booking, discount);
+            if(booking.getBookingDiscounts()!= null){
+                booking.getBookingDiscounts().add(bookingDiscount);
+            }
+            if(discount.getDiscountBookings()!= null){
+                discount.getDiscountBookings().add(bookingDiscount);
+            }
+            bookingRepository.save(booking);
+            discountRepository.save(discount);
+            return booking;
+        }
         return bookingRepository.save(booking);
     }
 

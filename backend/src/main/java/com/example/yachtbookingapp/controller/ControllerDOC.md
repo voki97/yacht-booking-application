@@ -146,6 +146,14 @@ The `DiscountController` class is responsible for handling HTTP requests related
 - **Path Variable**: `id` - The ID of the discount record to retrieve.
 - **Response**: `ResponseEntity<DiscountEntityModel>` - The discount entity corresponding to the provided ID.
 
+### Get Discount by code
+
+- **HTTP Method**: `GET`
+- **Endpoint**: `/api/discount/code/{code}`
+- **Description**: Retrieves a specific discount record by its unique code.
+- **Path Variable**: `code` - The code of the discount record to retrieve.
+- **Response**: `ResponseEntity<DiscountEntityModel>` - The discount entity corresponding to the provided code variable.
+
 ### Update Discount
 
 - **HTTP Method**: `PUT`

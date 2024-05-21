@@ -1,9 +1,12 @@
 package com.example.yachtbookingapp.model;
 
+import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscount;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -16,7 +19,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "discount")
-@Data//"Lombok" annotation for getters, setters
+@Setter
+@Getter//"Lombok" annotation for getters, setters
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class DiscountEntityModel {
@@ -25,16 +29,21 @@ public class DiscountEntityModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "discount_id")
     private int discountId;
-    @Column(name = "code", nullable = false, length = 20)
+    @Column(name = "code", nullable = false, length = 20, unique = true)
     @NonNull
     private String code;
     @Column(name = "type", nullable = false, length = 20)
     @NonNull
     private String type;
-    @Column(name = "value", nullable = false, precision = 10, scale = 2)
+    @Column(name = "value", nullable = false, precision = 5, scale = 2)
     @NonNull
     private BigDecimal value;
+    @Column(name = "start_date")
+    private LocalDate startDate;
+    @Column(name = "end_date")
+    private LocalDate endDate;
     //This is the representation of bookings, BookingEntityModel own this relationship.
-    @ManyToMany(mappedBy = "discounts")
-    private Set<BookingEntityModel> bookings;
+    @OneToMany(mappedBy = "discount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<BookingDiscount> discountBookings;
 }

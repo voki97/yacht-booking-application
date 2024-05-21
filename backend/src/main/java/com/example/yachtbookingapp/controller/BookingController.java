@@ -1,12 +1,14 @@
 package com.example.yachtbookingapp.controller;
 
 import com.example.yachtbookingapp.model.BookingEntityModel;
+import com.example.yachtbookingapp.model.requestDTO.BookingRequest;
 import com.example.yachtbookingapp.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * The BookingController class <br>
@@ -31,8 +33,15 @@ public class BookingController {
      * Creates a new booking record.
      */
     @PostMapping("/create")
-    public ResponseEntity<BookingEntityModel> createBooking(@RequestBody BookingEntityModel bookingEntityModel) {
-        BookingEntityModel createdBooking = bookingService.createBooking(bookingEntityModel);
+    public ResponseEntity<BookingEntityModel> createBooking(@RequestBody BookingRequest bookingRequest) {
+        BookingEntityModel booking = new BookingEntityModel();
+        booking.setYacht(bookingRequest.getYacht());
+        booking.setBookingDate(bookingRequest.getBookingDate());
+        booking.setStartDate(bookingRequest.getStartDate());
+        booking.setEndDate(bookingRequest.getEndDate());
+        booking.setTotalPrice(bookingRequest.getTotalPrice());
+        booking.setStatus(bookingRequest.getStatus());
+        BookingEntityModel createdBooking = bookingService.createBooking(booking, bookingRequest.getDiscountId());
         return ResponseEntity.ok(createdBooking);
     }
 

@@ -58,9 +58,22 @@ public class DiscountService {
      */
     public DiscountEntityModel getDiscountById(int discountId) {
         return discountRepository.findById(discountId).orElseThrow(() ->
-                new IllegalArgumentException("Discount with id " + discountId + " not found!"));
+                new IllegalArgumentException("Discount with ID: " + discountId + " not found!"));
     }
 
+    //specific by CODE:
+
+    /**
+     * Retrieves a specific discount entity from the database by its unique code.
+     *
+     * @param discountCode provided code input that
+     * @return optional DiscountEntityModel if one exists in the database,
+     * else
+     * @throws IllegalArgumentException if no discount entity is found.*/
+    public DiscountEntityModel getDiscountByCode(String discountCode) {
+        return discountRepository.findDiscountByCode(discountCode).orElseThrow(()->
+                new IllegalArgumentException("Discount with code: " + discountCode + " not found!"));
+    }
     //UPDATE------------------------------------------------------------------------------------------------------------
 
     /**
@@ -73,7 +86,7 @@ public class DiscountService {
      */
     public DiscountEntityModel updateDiscount(int discountId, DiscountEntityModel discountUpdateData) {
         DiscountEntityModel existingDiscount = discountRepository.findById(discountId).orElseThrow(() ->
-                new IllegalArgumentException("Discount with id " + discountId + " not found!"));
+                new IllegalArgumentException("Discount with ID: " + discountId + " not found!"));
         existingDiscount.setCode(discountUpdateData.getCode());
         existingDiscount.setType(discountUpdateData.getType());
         existingDiscount.setValue(discountUpdateData.getValue());

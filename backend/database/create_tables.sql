@@ -24,9 +24,10 @@ CREATE TABLE discount (
                           discount_id INT AUTO_INCREMENT PRIMARY KEY,
                           code VARCHAR(20) NOT NULL,
                           type VARCHAR(20) NOT NULL,
-                          value DECIMAL(10, 2) NOT NULL,
-                          start_date DATE NOT NULL,
-                          end_date DATE NOT NULL
+                          value DECIMAL(5, 2) NOT NULL,
+                          start_date DATE,
+                          end_date DATE,
+                          CONSTRAINT uq_code UNIQUE (code)
 );
 
 -- Create Booking_Discount Table (Many-to-Many Relationship)

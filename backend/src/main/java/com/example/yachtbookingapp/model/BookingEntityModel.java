@@ -1,5 +1,7 @@
 package com.example.yachtbookingapp.model;
 
+import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscount;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +23,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "booking")
-@Data//"Lombok" annotation for getters, setters
+@Setter
+@Getter//"Lombok" annotation for getters, setters
 @RequiredArgsConstructor//Fields with @NonNull annotation will be parameters of constructor.
 @NoArgsConstructor
 public class BookingEntityModel {
@@ -52,11 +55,7 @@ public class BookingEntityModel {
     @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
     private ReportEntityModel report;
     //Representation of discounts:
-    @ManyToMany
-    @JoinTable(
-            name = "booking_discount",
-            joinColumns = @JoinColumn(name = "booking_id"),
-            inverseJoinColumns = @JoinColumn(name = "discount_id")
-    )
-    private Set<DiscountEntityModel> discounts;
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<BookingDiscount> bookingDiscounts;
 }

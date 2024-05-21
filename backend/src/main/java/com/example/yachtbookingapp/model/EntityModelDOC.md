@@ -33,7 +33,7 @@ Represents a [discount](DiscountEntityModel.java) applicable to bookings.
 #### Attributes:
 
 - `discountId`: Long - Unique identifier for each discount (Primary Key).
-- `code`: String - Discount code.
+- `code`: String - Discount code(Unique key).
 - `type`: String - Type of discount (e.g., percentage, fixed amount).
 - `value`: BigDecimal - Value of the discount.
 - `startDate`: LocalDate - Start date of the discount validity.

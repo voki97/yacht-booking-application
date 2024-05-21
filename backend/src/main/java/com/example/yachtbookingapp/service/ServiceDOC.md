@@ -82,6 +82,7 @@ Create a new booking entity in the database.
 
 - **Parameters**:
   - `booking`: The booking entity to be created.
+  - `discountIds`: set of discount IDs if available, to insert into booking_discount table.
 
 - **Returns**:
   - `BookingEntityModel`: The created booking entity.
@@ -159,7 +160,7 @@ Retrieve a list of all discount entities from the database.
 
 ### `getDiscountById(int discountId)`
 
-Retrieves a specific discount entity from the database by its ID.
+Retrieve a specific discount entity from the database by its ID.
 
 - **Parameters**:
   - `discountId`: The ID of the discount entity to retrieve.
@@ -169,6 +170,19 @@ Retrieves a specific discount entity from the database by its ID.
 
 - **Throws**:
   - `IllegalArgumentException`: If no discount entity is found with the specified ID.
+
+### `getDiscountByCode(String code)`
+
+Retrieve a specific discount entity from the database by unique code.
+
+- **Parameters**:
+  - `discountId`: The code of the discount entity to retrieve.
+
+- **Returns**:
+  - `DiscountEntityModel`: The discount entity with the specified code.
+
+- **Throws**:
+  - `IllegalArgumentException`: If no discount entity is found with the specified code.
 
 ### `updateDiscount(int discountId, DiscountEntityModel discountUpdateData)`
 

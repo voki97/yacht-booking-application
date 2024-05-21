@@ -29,7 +29,7 @@ yacht-booking-backend/<br>
 
 The backend of the Yacht Booking Application consists of the following components:
 
-- **Controllers**: Handle incoming HTTP requests, process the requests, and return appropriate HTTP responses. They define RESTful API endpoints for interacting with the application.
+- **Controllers**: Handle incoming HTTP requests, process the requests, and return appropriate HTTP responses. They define RESTful API endpoints for interacting with the application. More about controllers is described in [ControllerDOC](src/main/java/com/example/yachtbookingapp/controller/ControllerDOC.md).
 
 - **Models**: Define entity classes representing domain objects such as yachts, bookings, and discounts. These classes are typically annotated with JPA annotations for database mapping. More about entity models is described in [EntityModelDOC](src/main/java/com/example/yachtbookingapp/model/EntityModelDOC.md).
 
@@ -65,7 +65,7 @@ This document provides an overview of the database schema for the Yacht Booking 
 ### 3. Discount Table
 
 - **discount_id**: Unique identifier for each discount (Primary Key).
-- **code**: Discount code.
+- **code**: Discount code (Unique Key).
 - **type**: Type of discount (e.g., percentage, fixed amount).
 - **value**: Value of the discount.
 - **start_date**: Start date of the discount validity.

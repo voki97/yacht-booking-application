@@ -13,7 +13,8 @@ import java.math.BigDecimal;
  * (BigDecimal) {@link #pricePerDay pricePerDay} for yacht per day.<br>*/
 @Entity
 @Table(name = "yacht")
-@Data//"Lombok" annotation for getters, setters
+@Setter
+@Getter//"Lombok" annotation for getters, setters
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class YachtEntityModel {
