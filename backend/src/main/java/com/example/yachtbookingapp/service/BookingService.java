@@ -1,6 +1,7 @@
 package com.example.yachtbookingapp.service;
 
 import com.example.yachtbookingapp.model.BookingEntityModel;
+import com.example.yachtbookingapp.model.DTOs.CalculateTotalPriceRequest;
 import com.example.yachtbookingapp.model.DiscountEntityModel;
 import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscount;
 import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscountKey;
@@ -9,6 +10,8 @@ import com.example.yachtbookingapp.repository.DiscountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
@@ -113,5 +116,12 @@ public class BookingService {
      */
     public void deleteBooking(int bookingId) {
         bookingRepository.deleteById(bookingId);
+    }
+
+    //Custom methods:
+    //Calculate total price:
+    public BigDecimal calculateTotalPrice(CalculateTotalPriceRequest request) {
+        long days = ChronoUnit.DAYS.between(request.getStartDate(), request.getEndDate());
+        return new BigDecimal(days).multiply(request.getPricePerDay());
     }
 }

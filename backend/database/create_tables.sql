@@ -45,7 +45,6 @@ CREATE TABLE booking_discount (
 CREATE TABLE report (
                         report_id INT AUTO_INCREMENT PRIMARY KEY,
                         booking_id INT NOT NULL,
-                        file_path VARCHAR(255) NOT NULL,
                         generation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         CONSTRAINT fk_booking_report
                         FOREIGN KEY (booking_id) REFERENCES booking(booking_id)

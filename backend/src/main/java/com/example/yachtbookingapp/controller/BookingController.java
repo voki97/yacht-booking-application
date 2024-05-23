@@ -1,14 +1,15 @@
 package com.example.yachtbookingapp.controller;
 
 import com.example.yachtbookingapp.model.BookingEntityModel;
-import com.example.yachtbookingapp.model.requestDTO.BookingRequest;
+import com.example.yachtbookingapp.model.DTOs.CalculateTotalPriceRequest;
+import com.example.yachtbookingapp.model.DTOs.CreateBookingRequest;
 import com.example.yachtbookingapp.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The BookingController class <br>
@@ -33,15 +34,15 @@ public class BookingController {
      * Creates a new booking record.
      */
     @PostMapping("/create")
-    public ResponseEntity<BookingEntityModel> createBooking(@RequestBody BookingRequest bookingRequest) {
+    public ResponseEntity<BookingEntityModel> createBooking(@RequestBody CreateBookingRequest createBookingRequest) {
         BookingEntityModel booking = new BookingEntityModel();
-        booking.setYacht(bookingRequest.getYacht());
-        booking.setBookingDate(bookingRequest.getBookingDate());
-        booking.setStartDate(bookingRequest.getStartDate());
-        booking.setEndDate(bookingRequest.getEndDate());
-        booking.setTotalPrice(bookingRequest.getTotalPrice());
-        booking.setStatus(bookingRequest.getStatus());
-        BookingEntityModel createdBooking = bookingService.createBooking(booking, bookingRequest.getDiscountId());
+        booking.setYacht(createBookingRequest.getYacht());
+        booking.setBookingDate(createBookingRequest.getBookingDate());
+        booking.setStartDate(createBookingRequest.getStartDate());
+        booking.setEndDate(createBookingRequest.getEndDate());
+        booking.setTotalPrice(createBookingRequest.getTotalPrice());
+        booking.setStatus(createBookingRequest.getStatus());
+        BookingEntityModel createdBooking = bookingService.createBooking(booking, createBookingRequest.getDiscountId());
         return ResponseEntity.ok(createdBooking);
     }
 
@@ -88,5 +89,13 @@ public class BookingController {
     public ResponseEntity<BookingEntityModel> deleteBooking(@PathVariable("id") int id) {
         bookingService.deleteBooking(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //CUSTOM METHODS:
+    //Calculate total price:
+    @PostMapping("/total_price")
+    public ResponseEntity<BigDecimal> calculateTotalPrice(@RequestBody CalculateTotalPriceRequest request) {
+        BigDecimal totalPrice = bookingService.calculateTotalPrice(request);
+        return ResponseEntity.ok(totalPrice);
     }
 }

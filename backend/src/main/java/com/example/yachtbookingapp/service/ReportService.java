@@ -72,7 +72,6 @@ public class ReportService {
         ReportEntityModel existingReport = reportRepository.findById(reportId).orElseThrow(() ->
                 new IllegalArgumentException("Report with ID " + reportId + " not found!"));
         existingReport.setBooking(reportUpdateData.getBooking());
-        existingReport.setFilePath(reportUpdateData.getFilePath());
         existingReport.setGenerationDate(reportUpdateData.getGenerationDate());
         return reportRepository.save(existingReport);
     }
@@ -86,4 +85,8 @@ public class ReportService {
     public void deleteReportById(int reportId) {
         reportRepository.deleteById(reportId);
     }
+
+    //CUSTOM METHODS:
+    //generate report:
+
 }
