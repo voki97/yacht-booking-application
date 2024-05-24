@@ -58,15 +58,6 @@ The backend of the Yacht Booking Application consists of the following component
 
 - **Services**: Contain business logic and perform operations such as booking a yacht, applying discounts, generating reports. They typically interact with repositories to access and manipulate data. More about services is described in [ServiceDOC](src/main/java/com/example/yachtbookingapp/service/ServiceDOC.md).
 
-## Endpoints
-
-The backend of the Yacht Booking Application exposes the following RESTful API endpoints:
-
-- **GET /api/yachts**: Retrieve a list of available yachts.
-- **POST /api/bookings**: Book a yacht by providing user details and yacht ID.
-- **POST /api/discounts/apply**: Apply a discount to a booking by providing the discount code and booking ID.
-- **GET /api/reports/{bookingId}**: Generate a booking confirmation report for a given booking ID.
-
 ## Setup and Installation
 
 To set up and run the backend of the Yacht Booking Application locally, follow these steps:
