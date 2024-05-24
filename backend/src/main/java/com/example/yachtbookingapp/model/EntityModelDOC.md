@@ -53,4 +53,5 @@ Represents a [report](ReportEntityModel.java) generated for a booking.
 - `generationDate`: LocalDateTime - Date and time when the report was generated.
 
 ## Entity Model Testing:
-- Tests related to these entities can be found [here](../../../../../../test/java/com/example/yachtbookingapp/model/EntityModelTest.java).
+- Tests related to these entities can be found [here](../../../../../../test/java/com/example/yachtbookingapp/model/EntityModelTest.java).<br>
+- Entities are not completely tested yet!

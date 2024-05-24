@@ -226,3 +226,4 @@ The `ReportController` class is responsible for handling HTTP requests related t
 - **Path Variable**: `id` - The ID of the report record to delete.
 - **Response**: `ResponseEntity<Void>` - Indicates the success of the deletion operation.
 
+NOTE: not everything is documented!

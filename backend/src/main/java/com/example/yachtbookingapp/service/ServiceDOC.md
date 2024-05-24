@@ -269,3 +269,5 @@ Deletes a report entity from the database by its ID.
 
 - **Parameters**:
   - `reportId`: The ID of the report entity to delete.
+
+NOTE: documentation is not complete!

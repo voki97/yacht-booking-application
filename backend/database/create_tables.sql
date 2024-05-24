@@ -15,7 +15,7 @@ CREATE TABLE booking (
                          end_date DATE NOT NULL,
                          total_price DECIMAL(10, 2) NOT NULL,
                          status VARCHAR(20) NOT NULL,
-                         CONSTRAINT fk_yacht_booking
+                         CONSTRAINT fk_booking_yacht_id
                          FOREIGN KEY (yacht_id) REFERENCES yacht(yacht_id)
 );
 
@@ -27,17 +27,17 @@ CREATE TABLE discount (
                           value DECIMAL(5, 2) NOT NULL,
                           start_date DATE,
                           end_date DATE,
-                          CONSTRAINT uq_code UNIQUE (code)
+                          CONSTRAINT uk_code UNIQUE (code)
 );
 
--- Create Booking_Discount Table (Many-to-Many Relationship)
+-- Create Booking_Discount Join Table (Many-to-Many Relationship)
 CREATE TABLE booking_discount (
                                   booking_id INT,
                                   discount_id INT,
                                   PRIMARY KEY (booking_id, discount_id),
-                                  CONSTRAINT fk_booking_booking_discount
+                                  CONSTRAINT fk_discount_booking_id
                                   FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
-                                  CONSTRAINT fk_discount_booking_discount
+                                  CONSTRAINT fk_booking_discount_id
                                   FOREIGN KEY (discount_id) REFERENCES discount(discount_id)
 );
 
@@ -46,6 +46,6 @@ CREATE TABLE report (
                         report_id INT AUTO_INCREMENT PRIMARY KEY,
                         booking_id INT NOT NULL,
                         generation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        CONSTRAINT fk_booking_report
+                        CONSTRAINT fk_report_booking_id
                         FOREIGN KEY (booking_id) REFERENCES booking(booking_id)
 );
