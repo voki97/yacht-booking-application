@@ -1,28 +1,29 @@
 # Yacht Booking Application
 
-Welcome to the Yacht Booking Application! This project is a simplified demonstration of a yacht booking system designed to showcase core features and best practices.
+Welcome to the Yacht Booking Application! This project is a simplified demonstration of a yacht booking system.
+With this project, I want to showcase the Java, Spring Boot, SQL, HTML, JavaScript, CSS fundamentals. Also, for the first time, I am using JasperReports to generate booking confirmation reports.
 
 ## Features
 
 - **Yacht Listings**: Browse available yachts with details such as name, type, and price per day.
-- **Booking Functionality**: Book a yacht by providing your name and selecting a yacht.
-- **Discount Management**: Apply discounts to your bookings.
+- **Booking Functionality**: Book a yacht by selecting a yacht.
+- **Discount Management**: Apply discounts to your bookings, if you know the discount code.
 - **Report Generation**: Generate booking confirmation reports.
-- **User Interface**: Clean and intuitive interface for easy navigation.
+- **User Interface**: Intuitive interface for easy navigation.
 
 ## How to Use
 
-1. **View Yacht Listings**: Visit the application to see the available yachts.
-2. **Book a Yacht**: Select a yacht, provide your name, and submit the booking form.
+1. **View Yacht Listings**: Visit the application to see the available yachts. Available yachts are displayed on application home page.
+2. **Book a Yacht**: Select a yacht and submit the booking form.
 3. **Apply Discounts**: If applicable, enter a discount code during the booking process.
 4. **Generate Reports**: Upon completing a booking, you can view or download a booking confirmation report.
 
 ## Setup and Installation
 
 1. [Clone](#setup-and-installation-1) the repository to your local machine.
-2. To start the application by running an HTTP server, open frontend directory and follow the instructions provided in [documentation](frontend/FrontendDOC.md) file.
+2. To start the application, open frontend directory and follow the instructions provided in [documentation](frontend/FrontendDOC.md) file.
 3. For the backend setup, follow the instructions provided in the backend directory, [documentation](backend/BackendDOC.md) file .
-4. Access the application in your web browser and start exploring!
+4. Access the application in your web browser.
 
 ## Features
 1. **Yacht Listings**: Display a list of available yachts.
@@ -40,25 +41,26 @@ Welcome to the Yacht Booking Application! This project is a simplified demonstra
     - Display yacht details including name, type, and price per day.
 
 ### 2. Booking Functionality
-- **Description**: Users can book a yacht by providing their name and selecting a yacht.
+- **Description**: Users can book a yacht by .
 - **Requirements**:
-    - Form to capture username and selected yacht.
+    - Select "start" and "end" date.
     - Send booking data to the backend.
     - Store booking details in the database.
 
 ### 3. Discount Management
 - **Description**: Apply discounts to bookings.
 - **Requirements**:
-    - Define discount rules (e.g., percentage off).
+    - Discount rules (percentage) are defined within discount entity in the database.
+    - User must provide discount code to be able to lower the total price.
     - Apply discount to the booking total price.
     - Show discounted price to the user.
 
-### 4. Report Generation
+### 4. Report Generation - developing
 - **Description**: Generate a booking confirmation report using JasperReports.
 - **Requirements**:
     - Create a JasperReports template for booking confirmations.
     - Generate a report upon booking completion.
-    - Provide download or view option for the report.
+    - User can download or view the report.
 
 ### 5. User Interface
 - **Description**: A clean and responsive UI that is easy to use.
@@ -88,11 +90,6 @@ Welcome to the Yacht Booking Application! This project is a simplified demonstra
 - **Spring Boot DevTools**: Provides additional development-time features like automatic restarts.
 - **Lombok**: A library that helps reduce boilerplate code in Java.
 
-### Frontend Dependencies (Optional, depending on your frontend technology):
-- **Thymeleaf**: A server-side Java template engine for web and standalone environments.
-- **Bootstrap**: A popular CSS framework for building responsive and mobile-first websites.
-
-
 ## Use Cases
 
 ### Use Case 1: Viewing Yachts
@@ -105,29 +102,27 @@ Welcome to the Yacht Booking Application! This project is a simplified demonstra
 
 ### Use Case 2: Booking a Yacht
 - **Actor**: User
-- **Description**: The user books a yacht by filling out a form with their name and selecting a yacht.
+- **Description**: The user books a yacht by selecting a yacht.
 - **Steps**:
     1. User selects a yacht to book.
-    2. User fills out the booking form with their name.
-    3. User submits the form.
-    4. Application sends booking data to the backend.
-    5. Backend stores the booking details.
-    6. Application generates a booking confirmation report.
-    7. User can view or download the report.
+    2. User select "start" and "end" date.
+    3. Application sends booking data to the backend.
+    4. Backend stores the booking details.
+    5. Application generates a booking confirmation report.
+    6. User can view or download the report.
 
 ### Use Case 3: Applying a Discount
 - **Actor**: User
 - **Description**: The user applies a discount to their booking.
 - **Steps**:
     1. User selects a yacht to book.
-    2. User fills out the booking form with their name.
-    3. User enters a discount code (if applicable).
-    4. Application calculates the discounted price.
-    5. User submits the form.
-    6. Application sends booking data to the backend with the discounted price.
-    7. Backend stores the booking details with the discount applied.
-    8. Application generates a booking confirmation report with the discounted price.
-    9. User can view or download the report.
+    2. User enters a discount code (if applicable).
+    3. Application calculates the discounted price.
+    4. User submits the booking.
+    5. Application sends booking data to the backend with the discounted price.
+    6. Backend stores the booking details with the discount applied.
+    7. Application generates a booking confirmation report with the discounted price.
+    8. User can view or download the report.
 
 
 ## Setup and Installation
