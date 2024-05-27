@@ -15,7 +15,7 @@ src/<br>
 │ │ └── CreateBooking.vue - Vue component for creating a booking<br>
 │ ├── yachts/ - Components related to yachts<br>
 │ │ ├── YachtDOC.md - Documentation for yacht components<br>
-│ │ ├── YachtsForBooking.js - JavaScript logic for yachts component<br>
+│ │ ├── YachtsManager.js - JavaScript logic for yachts component<br>
 │ │ └── YachtsForBooking.vue - Vue component for listing yachts<br>
 ├── models/ - Data models<br>
 │ ├── Booking.js - Booking data model<br>
@@ -36,7 +36,7 @@ src/<br>
         - **CreateBooking.vue**: Vue component for creating a booking.
     - **yachts/**: Directory containing components and documentation related to yachts.
         - **YachtDOC.md**: Documentation for yacht components.
-        - **YachtsForBooking.js**: JavaScript logic for the yacht component.
+        - **YachtsManager.js**: JavaScript logic for the yacht component.
         - **YachtsForBooking.vue**: Vue component for listing yachts.
 - **models/**: Directory containing data models.
     - **Booking.js**: Data model for bookings.
@@ -49,12 +49,12 @@ The frontend of the Yacht Booking Application provides the following features:
 ### View Yacht Listings
 
 - Display a list of available yachts with details such as name, type, and price per day.
-- Detailed [Yacht documentation](/src/components/yachts/YachtDOC.md).
+- Detailed [Yacht documentation](src/components/yachts/YachtDOC.md).
 
 ### Book a Yacht
 
 - Allow users to book a yacht by selecting a yacht from the list and providing the necessary booking details.
-- Detailed [Booking documentation](/src/components/bookings/BookingDOC.md).
+- Detailed [Booking documentation](src/components/bookings/BookingDOC.md).
 
 ### Apply Discounts
 

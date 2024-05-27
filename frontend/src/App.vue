@@ -1,27 +1,36 @@
 <template>
   <div id="app">
-    <YachtsForBooking/>
+    <NavigationBar/>
   </div>
+  <div class="app-body">
+    <router-view></router-view>
+  </div>
+
 </template>
 
 <script>
-import YachtsForBooking from '@/components/yachts/YachtsForBooking.vue'
+
+import NavigationBar from "@/components/navigation/NavigationBar.vue";
+
+
 
 export default {
   name: 'App',
   components: {
-    YachtsForBooking
+    NavigationBar
   }
 }
 </script>
 
 <style>
+body{
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

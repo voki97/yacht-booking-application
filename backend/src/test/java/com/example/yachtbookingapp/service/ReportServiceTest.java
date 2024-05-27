@@ -111,7 +111,7 @@ public class ReportServiceTest {
         //report entity model with data for update:
         LocalDateTime generationDate = LocalDateTime.now();
         ReportEntityModel updatedReport = new ReportEntityModel(
-                new BookingEntityModel(), "path/to/file/test", generationDate
+                new BookingEntityModel(), generationDate
         );
         updatedReport.setReportId(reportId);
         //mock:

@@ -45,7 +45,6 @@ public class EntityModelTest {
         //report:
         report.setReportId(1);
         report.setBooking(booking);
-        report.setFilePath("path/to/report");
         LocalDateTime generationDate = LocalDateTime.now();
         report.setGenerationDate(generationDate);
         //discount:
@@ -54,7 +53,6 @@ public class EntityModelTest {
         discount.setType("VIP");
         discount.setValue(BigDecimal.valueOf(100.00));
         Set<BookingEntityModel> bookings = new HashSet<>();
-        discount.setBookings(bookings);
 
         //Assert with getters:
         //Yacht:
@@ -73,14 +71,12 @@ public class EntityModelTest {
         //Report:
         assertEquals(1, report.getReportId());
         assertEquals(booking, report.getBooking());
-        assertEquals("path/to/report", report.getFilePath());
         assertEquals(generationDate, report.getGenerationDate());
         //Discount:
         assertEquals(1, discount.getDiscountId());
         assertEquals("1234567890", discount.getCode());
         assertEquals("VIP", discount.getType());
         assertEquals(BigDecimal.valueOf(100.00), discount.getValue());
-        assertEquals(bookings, discount.getBookings());
     }
     /**
      * Test all-argument constructors and toString() methods for entity models.
@@ -103,7 +99,7 @@ public class EntityModelTest {
         //report:
         LocalDateTime generationDate = LocalDateTime.now();
         ReportEntityModel report = new ReportEntityModel(
-                booking,"path/to/report", generationDate);
+                booking, generationDate);
         //discount:
         DiscountEntityModel discount = new DiscountEntityModel(
                 "1234567890", "VIP", BigDecimal.valueOf(100.00)

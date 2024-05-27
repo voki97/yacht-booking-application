@@ -1,8 +1,10 @@
 package com.example.yachtbookingapp.service;
 
 import com.example.yachtbookingapp.model.BookingEntityModel;
+import com.example.yachtbookingapp.model.DiscountEntityModel;
 import com.example.yachtbookingapp.model.YachtEntityModel;
 import com.example.yachtbookingapp.repository.BookingRepository;
+import com.example.yachtbookingapp.repository.DiscountRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,8 @@ public class BookingServiceTest {
     private AutoCloseable closeable;
     @Mock
     private BookingRepository bookingRepository;
+    @Mock
+    private DiscountRepository discountRepository;
     @InjectMocks
     private BookingService bookingService;
     @BeforeEach
@@ -46,10 +51,12 @@ public class BookingServiceTest {
                 new YachtEntityModel(), LocalDate.now(),
                 LocalDate.now().plusDays(1), BigDecimal.valueOf(100.00), "pending"
         );
+        int discountId = 1;
         //mock:
         when(bookingRepository.save(any(BookingEntityModel.class))).thenReturn(expected);
+        when(discountRepository.findById(discountId)).thenReturn(Optional.of(new DiscountEntityModel()));
         //call the service method:
-        BookingEntityModel result = bookingService.createBooking(expected);
+        BookingEntityModel result = bookingService.createBooking(expected, discountId);
         //assert and verify that repository invoked:
         assertEquals(expected, result);
         verify(bookingRepository, times(1)).save(expected);
