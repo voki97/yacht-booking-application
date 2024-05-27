@@ -10,4 +10,5 @@ public class CalculateTotalPriceRequest {
     private LocalDate startDate;
     private LocalDate endDate;
     private BigDecimal pricePerDay;
+    private int discountId;
 }

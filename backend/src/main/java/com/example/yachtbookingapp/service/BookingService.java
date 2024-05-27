@@ -11,8 +11,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import static java.math.RoundingMode.CEILING;
 
 /**
  * The BookingService class <br>
@@ -121,7 +124,20 @@ public class BookingService {
     //Custom methods:
     //Calculate total price:
     public BigDecimal calculateTotalPrice(CalculateTotalPriceRequest request) {
+        BigDecimal totalPrice;
         long days = ChronoUnit.DAYS.between(request.getStartDate(), request.getEndDate());
-        return new BigDecimal(days).multiply(request.getPricePerDay());
+        if(request.getDiscountId()!=0){
+            DiscountEntityModel appliedDiscount = discountRepository.findById(request.getDiscountId()).orElseThrow(()->
+                new IllegalArgumentException("Discount with ID: "+request.getDiscountId()+" not found!"));
+            //50% off: totalPrice: 100, 50/100=0.50, 0.50*100 = 50, 100-50= 50
+            BigDecimal discount = appliedDiscount.getValue().divide(BigDecimal.valueOf(100.00), 2, RoundingMode.HALF_UP);
+            totalPrice = new BigDecimal(days).multiply(request.getPricePerDay());
+            BigDecimal discountValue = totalPrice.multiply(discount);
+            totalPrice = totalPrice.subtract(discountValue);
+        }else{
+            totalPrice = new BigDecimal(days).multiply(request.getPricePerDay());
+            System.out.println(totalPrice);
+        }
+        return totalPrice;
     }
 }
