@@ -1,7 +1,5 @@
 export default class Report {
-    constructor(reportId, bookingId, generationDate) {
-        this.reportId = reportId;
+    constructor(reportId, bookingId) {
         this.bookingId = bookingId;
-        this.generationDate = generationDate;
     }
 }

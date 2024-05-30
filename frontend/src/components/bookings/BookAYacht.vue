@@ -18,7 +18,10 @@
       <button v-if="totalPrice>0"
               @click="confirmBooking">Confirm</button>
     </div>
-
+  </div>
+  <div class="report-container"
+       v-if="booking.bookingId">
+      <ReportHandling :booking-id="booking.bookingId"/>
   </div>
 </template>
 <script>
@@ -26,10 +29,11 @@ import BookingManager from "@/components/bookings/BookingManager";
 import YachtDetails from "@/components/yachts/YachtDetails.vue";
 import DatePicker from "@/components/datePicker/DatePicker.vue";
 import ApplyDiscount from "@/components/discounts/ApplyDiscount.vue";
+import ReportHandling from "@/components/reports/ReportHandling.vue";
 
 export default {
   name: 'BookAYacht',
-  components: {ApplyDiscount, DatePicker, YachtDetails},
+  components: {ReportHandling, ApplyDiscount, DatePicker, YachtDetails},
   mixins:[BookingManager]
 }
 </script>

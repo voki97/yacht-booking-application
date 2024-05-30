@@ -1,6 +1,7 @@
 import YachtDetails from "@/components/yachts/YachtDetails.vue";
 import Yacht from "@/models/Yacht";
 import bookingService from "@/components/bookings/BookingService";
+import Booking from "@/models/Booking";
 
 export default {
     name: 'BookingManager',
@@ -12,6 +13,7 @@ export default {
     },
     data() {
         return {
+            booking: new Booking,
             yacht: new Yacht,
             startDate: null,
             endDate: null,
@@ -63,8 +65,7 @@ export default {
         },
         async confirmBooking(){
           try{
-              if(this.totalPrice>0){
-                  await bookingService.saveBooking(
+                  this.booking = await bookingService.saveBooking(
                       this.yacht,
                       this.startDate,
                       this.endDate,
@@ -72,7 +73,6 @@ export default {
                       'pending',
                       this.discountId
                   )
-              }
           }catch (error){
               this.error = error.message
           }
