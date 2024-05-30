@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 /**
- * Represents a discount applicable to bookings.<br>
+ * Represents a discount applicable to booking.<br>
  * Class fields:<br>
  * (int) {@link #discountId discountId}<br>
  * (String) {@link #code code}<br>
@@ -42,7 +42,7 @@ public class DiscountEntityModel {
     private LocalDate startDate;
     @Column(name = "end_date")
     private LocalDate endDate;
-    //This is the representation of bookings, BookingEntityModel own this relationship.
+    //This is the representation of booking, BookingEntityModel own this relationship.
     @OneToMany(mappedBy = "discount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<BookingDiscount> discountBookings;

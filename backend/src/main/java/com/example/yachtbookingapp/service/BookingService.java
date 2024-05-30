@@ -15,7 +15,6 @@ import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-import static java.math.RoundingMode.CEILING;
 
 /**
  * The BookingService class <br>
@@ -136,7 +135,6 @@ public class BookingService {
             totalPrice = totalPrice.subtract(discountValue);
         }else{
             totalPrice = new BigDecimal(days).multiply(request.getPricePerDay());
-            System.out.println(totalPrice);
         }
         return totalPrice;
     }

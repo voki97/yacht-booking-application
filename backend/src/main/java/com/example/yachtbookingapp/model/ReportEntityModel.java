@@ -27,6 +27,5 @@ public class ReportEntityModel {
     @NonNull
     private BookingEntityModel booking;
     @Column(name = "generation_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @NonNull
     private LocalDateTime generationDate;
 }

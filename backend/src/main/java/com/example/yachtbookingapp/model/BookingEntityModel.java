@@ -1,6 +1,7 @@
 package com.example.yachtbookingapp.model;
 
 import com.example.yachtbookingapp.model.bookingDiscount.BookingDiscount;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -53,6 +54,7 @@ public class BookingEntityModel {
     private String status;
     //One-To-One relationship is owned by ReportEntityModel class, and relationship must be represented also here:
     @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
+    @JsonBackReference
     private ReportEntityModel report;
     //Representation of discounts:
     @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

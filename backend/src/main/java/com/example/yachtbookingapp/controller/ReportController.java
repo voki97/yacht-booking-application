@@ -1,6 +1,9 @@
 package com.example.yachtbookingapp.controller;
 
+import com.example.yachtbookingapp.model.BookingEntityModel;
+import com.example.yachtbookingapp.model.DTOs.ReportDTO;
 import com.example.yachtbookingapp.model.ReportEntityModel;
+import com.example.yachtbookingapp.repository.BookingRepository;
 import com.example.yachtbookingapp.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReportController {
     private final ReportService reportService;
+    private final BookingRepository bookingRepository;
 
     //ENDPOINTS:
     //CREATE------------------------------------------------------------------------------------------------------------
@@ -30,9 +34,14 @@ public class ReportController {
     /**
      * Creates a new report record.
      */
-    @PostMapping("/create")
-    public ResponseEntity<ReportEntityModel> createReport(@RequestBody ReportEntityModel reportEntityModel) {
-        ReportEntityModel createdReport = reportService.createReport(reportEntityModel);
+    @PostMapping ("/create")
+    public ResponseEntity<ReportEntityModel> createReport(@RequestBody ReportDTO reportRequest) {
+        BookingEntityModel booking = bookingRepository.findById(reportRequest.getBookingId()).orElseThrow(()->
+                new IllegalArgumentException("Booking not found"));
+        ReportEntityModel report = new ReportEntityModel();
+        report.setBooking(booking);
+        report.setGenerationDate(reportRequest.getGenerationDate());
+        ReportEntityModel createdReport = reportService.createReport(report);
         return ResponseEntity.ok(createdReport);
     }
 
